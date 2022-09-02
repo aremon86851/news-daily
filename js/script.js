@@ -29,6 +29,8 @@ const loadNews = (id) => {
 
 function showNews(newses) {
     const newsContainer = document.getElementById('news-container');
+    const resultLengthContainer = document.getElementById('result-length')
+    resultLengthContainer.innerText = `${newses.length} items found for category Entertainment`
     newsContainer.innerHTML = ``;
     for (const news of newses) {
 
