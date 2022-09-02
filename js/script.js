@@ -28,52 +28,64 @@ const loadNews = (id) => {
 }
 
 function showNews(newses) {
+    // console.log(newses)
     const newsContainer = document.getElementById('news-container');
     const resultLengthContainer = document.getElementById('result-length')
-    resultLengthContainer.innerText = `${newses.length} items found for category Entertainment`
+    resultLengthContainer.innerText = `${newses.length} items found for category ${newses[0]}`
     newsContainer.innerHTML = ``;
     for (const news of newses) {
-
+        console.log(news)
         const createDiv = document.createElement('div');
         createDiv.classList.add('card', 'mb-3')
         createDiv.innerHTML = `
-        <div class="row g-0 p-2 rounded-lg">
+        <div class="row g-0 p-2 pt-3 pb-0 rounded-lg">
             <div class="col-md-2">
                 <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-10">
                 <div class="card-body">
-                    <h5 class="card-title">Title</h5>
-                    <p class="card-text">News Descriptions</p>
+                    <h5 class="card-title fs-2 fw-semibold pb-4">${news.title}</h5>
+                    <p class="card-text">${news.details.slice(0, 500)}<span> ....</span></p>
+                    <div class="d-flex align-items-center  mt-2">
+                        <div class="col-4">
+                            <p><img class="img-size me-3" src="${news.author.img}" alt=""><span>${news.author.name}</span></p>
+                        </div>
+                        <div class="d-flex justify-content-center fw-semibold align-items-center col-4">
+                            <p><span><i class="fw-bold me-2 fa-regular fa-eye"></i></span><span>
+                            ${news.total_view}</span></p>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                            <a onclick="loadNewsForModal('${news._id}')" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fs-4 text-primary fa-solid fa-arrow-right-long"></i></a>
+                        </div>
                 </div>
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex">
-                    <div>
-                        <img src="#" alt="">
-                    </div>
-                    <div>
-                        <p class="">Authore Name</p>
-                    </div>
                 </div>
-                <div class="d-flex fw-semibold align-items-center">
-                    <div>
-                        <i class="fw-bold me-2 fa-regular fa-eye"></i>
-                    </div>
-                    <div>
-                        1.5 M
-                    </div>
-                </div>
-                <div>
-                    <a class="btn"><i class=" text-primary fa-solid fa-arrow-right-long"></i></a>
-                </div>
-            </div>
+            
             </div>
         </div>
     `
         newsContainer.appendChild(createDiv);
     }
-
-
 }
-// loadNews()
+const loadNewsForModal = (idForModal) => {
+    const url = `https://openapi.programming-hero.com/api/news/${idForModal}`
+    fetch(url)
+        .then(res => res.json())
+        .then(modalData => newsForModal(modalData.data[0]))
+}
+const newsForModal = (modalDatas) => {
+    console.log(modalDatas)
+    const modalContainer = document.getElementById('modal-body');
+    modalContainer.innerHTML = `
+    <div>
+        <p><img class="img-fluid" src="${modalDatas.image_url}" alt=""></p>
+        <p>${modalDatas.title}</p>
+        <p>${modalDatas.details}</p>
+        <p class="d-flex justify-content-between"><span class="fw-semibold">Authore Name: ${modalDatas.author.name}</span><span class="fw-semibold">Publish Date: ${modalDatas.author.published_date}</span></p>
+        <div class="d-flex justify-content-center">
+            <p class="fw-semibold">Rating: <span>${modalDatas.rating.number} </span></span>${modalDatas.rating.badge}</span></p>
+        </div>
+    </div>
+    `
+}
+loadNews(02)
 loadCategories()
