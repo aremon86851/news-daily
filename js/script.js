@@ -32,10 +32,16 @@ function showNews(newses) {
     const newsContainer = document.getElementById('news-container');
     const resultLengthContainer = document.getElementById('result-length')
     resultLengthContainer.innerText = `${newses.length} items found for category ${newses[0]}`
+
+
     newsContainer.innerHTML = ``;
     for (const news of newses) {
         console.log(news)
         const createDiv = document.createElement('div');
+        if (news.author.name === null || news.total_view === null) {
+            news.author.name = 'Not Available Name';
+            news.total_view = "Not Available View"
+        }
         createDiv.classList.add('card', 'mb-3')
         createDiv.innerHTML = `
         <div class="row g-0 p-2 pt-3 pb-0 rounded-lg">
@@ -48,7 +54,7 @@ function showNews(newses) {
                     <p class="card-text">${news.details.slice(0, 500)}<span> ....</span></p>
                     <div class="d-flex align-items-center  mt-2">
                         <div class="col-4">
-                            <p><img class="img-size me-3" src="${news.author.img}" alt=""><span>${news.author.name}</span></p>
+                            <p><img class="img-size me-3" src="${news.author.img}" alt=""><span class="fw-semibold">${news.author.name}</span></p>
                         </div>
                         <div class="d-flex justify-content-center fw-semibold align-items-center col-4">
                             <p><span><i class="fw-bold me-2 fa-regular fa-eye"></i></span><span>
@@ -66,6 +72,7 @@ function showNews(newses) {
         newsContainer.appendChild(createDiv);
     }
 }
+// For Modal
 const loadNewsForModal = (idForModal) => {
     const url = `https://openapi.programming-hero.com/api/news/${idForModal}`
     fetch(url)
@@ -74,6 +81,9 @@ const loadNewsForModal = (idForModal) => {
 }
 const newsForModal = (modalDatas) => {
     console.log(modalDatas)
+    if (modalDatas.author.name === null) {
+        news.author.name = 'Not Available Name';
+    }
     const modalContainer = document.getElementById('modal-body');
     modalContainer.innerHTML = `
     <div>
