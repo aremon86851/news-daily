@@ -32,7 +32,7 @@
                                 class="mx-3 my-2 text-decoration-none fw-bold border-bottom border-primary border-3 pb-1"
                                 href="#">Home</a>
                         </li>
-                        <li class="list-unstyled"><a
+                        <li class="list-unstyled"><a id="blog-btn"
                                 class="mx-3 my-2 text-decoration-none fw-bold border-bottom border-primary border-3 pb-1"
                                 href="#">Blogs</a></li>
                     </ul>
@@ -76,8 +76,20 @@
                 </select>
             </p>
         </div>
-        <!-- Content -->
+        <!-- News Container -->
+        <!-- Spiner -->
+        <section id="loader" class="d-none">
+            <div style="height: 200px;" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </section>
         <div id="news-container">
+
+        </div>
+        <div id="blog-content">
+
         </div>
 
         <!-- Modal -->
@@ -97,7 +109,6 @@
                 </div>
             </div>
         </div>
-
     </main>
     <!-- Footer Section -->
     <footer class="mt-4">
