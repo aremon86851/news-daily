@@ -4,6 +4,7 @@ const loadCategories = () => {
     fetch(uri)
         .then(res => res.json())
         .then(categori => takCategoris(categori.data.news_category))
+        .catch(error => console.log(error));
 }
 
 const takCategoris = catgories => {
@@ -21,25 +22,22 @@ const takCategoris = catgories => {
     })
 }
 
-
-
-
-
 // News Post area
 const loadNews = (id) => {
-
     toggleSpiner(true)
     const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
     fetch(url)
         .then(res => res.json())
         .then(data => showNews(data.data))
+        .catch(error => console.log(error));
 }
-
-function showNews(newses) {
+const showNews = newses => {
     const newsContainer = document.getElementById('news-container');
-    const resultLengthContainer = document.getElementById('result-length')
     const blogContainer = document.getElementById('blog-content');
     blogContainer.innerHTML = ``
+
+    const resultLengthContainer = document.getElementById('result-length')
+    resultLengthContainer.classList.add('bg-white', 'py-2', 'px-3', 'fs-5')
     resultLengthContainer.innerText = `${newses.length} News Found On This Category`
     if (newses.length === 0) {
         resultLengthContainer.innerText = "No Result Found"
@@ -100,6 +98,7 @@ const loadNewsForModal = (idForModal) => {
     fetch(url)
         .then(res => res.json())
         .then(modalData => newsForModal(modalData.data[0]))
+        .catch(error => console.log(error));
 }
 const newsForModal = (modalDatas) => {
     if (modalDatas.author.name === null) {
@@ -122,9 +121,12 @@ const newsForModal = (modalDatas) => {
 document.getElementById('blog-btn').addEventListener('click', function () {
     const newsContainer = document.getElementById('news-container');
     newsContainer.innerHTML = ``
+    const resultLengthContainer = document.getElementById('result-length')
+    resultLengthContainer.innerText = ``
+    resultLengthContainer.classList.remove('bg-white', 'py-2', 'px-3', 'fs-5')
     const blogContainer = document.getElementById('blog-content');
     blogContainer.innerHTML = `
-        <div class="mx-auto w-50">
+        <div class="mx-auto w-50 fs-4">
             <div>
                 <p class="fw-semibold">Q: What is differance between var let const ?</p>
                 <p>A: <span>var  - </span><span>We can change the var variable at any time in any way, and we can access wherever the var is. And var is relese before ES6</span>
