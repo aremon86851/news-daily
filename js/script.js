@@ -40,6 +40,8 @@ function showNews(newses) {
     // console.log(newses[0])
     const newsContainer = document.getElementById('news-container');
     const resultLengthContainer = document.getElementById('result-length')
+    const blogContainer = document.getElementById('blog-content');
+    blogContainer.innerHTML = ``
     resultLengthContainer.innerText = `${newses.length} News Found On This Category`
     if (newses.length === 0) {
         resultLengthContainer.innerText = "No Result Found"
@@ -138,9 +140,31 @@ const newsForModal = (modalDatas) => {
 }
 // Blogs Content
 document.getElementById('blog-btn').addEventListener('click', function () {
+    const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = ``
     const blogContainer = document.getElementById('blog-content');
     blogContainer.innerHTML = `
-    <h1>Hi my name is emon</h1>
+        <div class="mx-auto w-50">
+            <div>
+                <p class="fw-semibold">Q: What is differance between var let const ?</p>
+                <p>A: <span>var  - </span><span>We can change the var variable at any time in any way, and we can access wherever the var is. And var is relese before ES6</span>
+                <br>
+                <span>let : </span><span> let variable is introduced in ES6. It is also like var but not full of like var . its declaration and assignment are similar to var . we can update the value but not access all of time in anywhere </span>
+                <br>
+                <span>const : </span><span>I think const varible is to much secure for variable. we can not modify the const variable but const allows to modify the values of array with some conditions</span>
+                </p>
+            </div>
+            <div>
+                <p class="fw-semibold">Q: What is differance between Arrow function and Regular function ?</p>
+                <p>A: Arrow function is new way to write anonymous function , and are similar to some other programming languages, such as phythone.<br>
+                Regular function created using function are constructible and callable.Regular function are construtible, they can be called using the new keyword.
+                </p>
+            </div>
+            <div>
+                <p class="fw-semibold">Q: Why using template string ?</p>
+                <p>A: ES< introduced us with template string. Template sting to much powerful from any other strings.We can make dynamic anything using template string</p>
+            </div>
+        </div>
     `
 })
 loadNews(8)
