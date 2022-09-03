@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Known Portal</title>
+    <title>News Daily</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- Styles -->
@@ -14,17 +14,20 @@
 <body>
     <!-- Header Section -->
     <header>
+
         <!-- Header Navbar -->
-        <nav class="w-75 mx-auto">
-            <div class="d-flex justify-content-between align-items-center border-4 border-bottom pb-3 border-light">
-                <div>
+        <nav class="w-75 mx-auto mx-0">
+            <div
+                class="d-flex flex-column flex-md-row flex-lg-row justify-content-lg-between justify-content-md-between justify-content-between justify-content-sm-center  align-items-center border-4 border-bottom pb-3 border-light">
+                <div
+                    class="col-12 col-md-4 col-lg-4 d-flex justify-content-center justify-content-md-start justify-content-lg-start">
                     <h2>
-                        <span class="rounded-4 rounded-bottom bg-primary px-3 py-2 text-white">Known</span> <span
-                            class="text-primary">Portal</span>
+                        <span class="rounded-4 rounded-bottom bg-primary px-3 py-2 text-white">News</span> <span
+                            class="text-primary">Daily</span>
                     </h2>
                 </div>
-                <div>
-                    <ul class="d-flex me-auto mb-2 mb-lg-0 fs-5">
+                <div class="col-12 col-md-2 col-lg-2">
+                    <ul class="d-flex justify-content-center me-auto mb-2 mb-lg-0 fs-5">
                         <li class="list-unstyled"><a
                                 class="mx-3 my-2 text-decoration-none fw-bold border-bottom border-primary border-3 pb-1"
                                 href="#">Home</a>
@@ -38,13 +41,23 @@
         </nav>
         <!-- Cetagories -->
         <div class="w-75 mx-auto">
-            <ul class="d-flex justify-content-between me-auto mb-2 mb-lg-0 fs-5 p-0 mx-auto" id="categories-container">
-                <li
-                    class="list-unstyled border-primary rounded-5 border-2 border-end border-primary rounded-5 border-2 border-start">
-                    <a class="mx-3 my-2 text-decoration-none text-dark" href="#">Home</a>
-                </li>
-
-            </ul>
+            <div class="d-flex justify-content-md-center justify-content-lg-center">
+                <nav class="navbar navbar-expand-lg bg-light">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse " id="navbarNavDropdown">
+                        <ul class="navbar-nav" id="categories-container">
+                            <li class="nav-item list-unstyled">
+                                <a onclick="loadNews(8)" class="nav-link mx-3 my-2 text-decoration-none text-dark fs-5"
+                                    href="#">Home</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
     </header>
     <main class="w-75 mx-auto">
@@ -54,7 +67,14 @@
         </div>
         <!-- Short By View -->
         <div>
-            <p><span>Sort By View: </span><span><input type=""></span></p>
+            <p>
+                <label for="cars">Sort By View:</label>
+                <select id="cars" name="cars">
+                    <option value="default">Default</option>
+                    <option value="max-to-min">Max-to-Min</option>
+                    <option value="min-to-max">Min-to-Max</option>
+                </select>
+            </p>
         </div>
         <!-- Content -->
         <div id="news-container">
@@ -79,7 +99,10 @@
         </div>
 
     </main>
-
+    <!-- Footer Section -->
+    <footer class="mt-4">
+        <p class="text-center fs-4">Copyright <small class=" text-muted fs-5">20222</small> News Daily</p>
+    </footer>
 
 
     <script src="https://kit.fontawesome.com/dcf77283d2.js" crossorigin="anonymous"></script>

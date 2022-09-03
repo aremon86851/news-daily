@@ -12,9 +12,9 @@ const items = items => {
         const createList = document.createElement('li')
         let types = `${item.category_id}`
         let parses = parseFloat(types)
-        createList.classList.add('list-unstyled', 'border-primary', 'rounded-5', 'border-2', 'border-end', 'border-primary', 'rounded-5', 'border-2', 'border-start')
+        createList.classList.add('list-unstyled', 'nav-item')
         createList.innerHTML = `
-                    <a onclick='loadNews(${parses})' class="mx-3 my-2 text-decoration-none text-dark" href="#">${item.category_name}</a>
+                    <a onclick='loadNews(${parses})' class="nav-link mx-3 my-2 text-decoration-none text-dark fs-5" href="#">${item.category_name}</a>
         `
         categoryContainer.appendChild(createList)
     };
@@ -28,16 +28,26 @@ const loadNews = (id) => {
 }
 
 function showNews(newses) {
-    // console.log(newses)
+    console.log(newses[0])
     const newsContainer = document.getElementById('news-container');
     const resultLengthContainer = document.getElementById('result-length')
-    resultLengthContainer.innerText = `${newses.length} items found for category ${newses[0]}`
+    resultLengthContainer.innerText = `${newses.length} News Found On This Category`
+    if (newses.length === 0) {
+        resultLengthContainer.innerText = "No Result Found"
+    }
 
+    const viewsArray = []
+    console.log(viewsArray)
 
+    // console.log(sorting).         
     newsContainer.innerHTML = ``;
     for (const news of newses) {
-        console.log(news)
+        // console.log(news)
         const createDiv = document.createElement('div');
+
+        const addViewsOnArray = `${news.total_view}`;
+        viewsArray.push(addViewsOnArray);
+
         if (news.author.name === null || news.total_view === null) {
             news.author.name = 'Not Available Name';
             news.total_view = "Not Available View"
@@ -61,7 +71,7 @@ function showNews(newses) {
                             ${news.total_view}</span></p>
                         </div>
                         <div class="col-4 d-flex justify-content-end">
-                            <a onclick="loadNewsForModal('${news._id}')" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fs-4 text-primary fa-solid fa-arrow-right-long"></i></a>
+                            <a onclick="loadNewsForModal('${news._id}')" href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fs-4 text-primary fa-solid fa-arrow-right-long"></i></a>
                         </div>
                 </div>
                 </div>
@@ -71,7 +81,14 @@ function showNews(newses) {
     `
         newsContainer.appendChild(createDiv);
     }
+
+    console.log(viewsArray)
+    viewsArray.sort((a, b) => {
+        return b - a;
+    })
 }
+
+
 // For Modal
 const loadNewsForModal = (idForModal) => {
     const url = `https://openapi.programming-hero.com/api/news/${idForModal}`
@@ -97,5 +114,5 @@ const newsForModal = (modalDatas) => {
     </div>
     `
 }
-loadNews(02)
+loadNews(8)
 loadCategories()
