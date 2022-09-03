@@ -1,4 +1,4 @@
-// Categories 
+// Categoriess 
 const loadCategories = () => {
     const uri = `https://openapi.programming-hero.com/api/news/categories`
     fetch(uri)
@@ -36,8 +36,6 @@ const loadNews = (id) => {
 }
 
 function showNews(newses) {
-
-    // console.log(newses[0])
     const newsContainer = document.getElementById('news-container');
     const resultLengthContainer = document.getElementById('result-length')
     const blogContainer = document.getElementById('blog-content');
@@ -46,28 +44,17 @@ function showNews(newses) {
     if (newses.length === 0) {
         resultLengthContainer.innerText = "No Result Found"
     }
-
-    const viewsArray = []
-    // console.log(viewsArray)
-
     toggleSpiner(false)
-    // console.log(sorting).         
     newsContainer.innerHTML = ``;
-
     newses.forEach(news => {
-        // console.log(news)
         const createDiv = document.createElement('div');
-
-        const addViewsOnArray = `${news.total_view}`;
-        viewsArray.push(addViewsOnArray);
-
         if (news.author.name === null || news.total_view === null) {
             news.author.name = 'Not Available Name';
             news.total_view = "Not Available View"
         }
         createDiv.classList.add('card', 'mb-3')
         createDiv.innerHTML = `
-            <div class="row g-0 p-2 pt-3 pb-0 rounded-lg">
+            <div class="row g-0 p-2 pt-3 rounded-lg">
                 <div class="col-md-2">
                     <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
                 </div>
@@ -94,13 +81,7 @@ function showNews(newses) {
 `
         newsContainer.appendChild(createDiv);
     })
-
     toggleSpiner(false)
-
-    // console.log(viewsArray)
-    viewsArray.sort((a, b) => {
-        return b - a;
-    })
 }
 // Spiner
 const toggleSpiner = isloading => {
@@ -121,7 +102,6 @@ const loadNewsForModal = (idForModal) => {
         .then(modalData => newsForModal(modalData.data[0]))
 }
 const newsForModal = (modalDatas) => {
-    console.log(modalDatas)
     if (modalDatas.author.name === null) {
         news.author.name = 'Not Available Name';
     }

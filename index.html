@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-12 col-md-2 col-lg-2">
                     <ul class="d-flex justify-content-center me-auto mb-2 mb-lg-0 fs-5">
-                        <li class="list-unstyled"><a
+                        <li class="list-unstyled"><a onclick="loadNews(8)"
                                 class="mx-3 my-2 text-decoration-none fw-bold border-bottom border-primary border-3 pb-1"
                                 href="#">Home</a>
                         </li>
@@ -65,17 +65,7 @@
         <div class="my-5">
             <p id="result-length" class="bg-white py-2 px-3 fs-5"></p>
         </div>
-        <!-- Short By View -->
-        <div>
-            <p>
-                <label for="cars">Sort By View:</label>
-                <select id="cars" name="cars">
-                    <option value="default">Default</option>
-                    <option value="max-to-min">Max-to-Min</option>
-                    <option value="min-to-max">Min-to-Max</option>
-                </select>
-            </p>
-        </div>
+
         <!-- News Container -->
         <!-- Spiner -->
         <section id="loader" class="d-none">
@@ -114,7 +104,6 @@
     <footer class="mt-4">
         <p class="text-center fs-4">Copyright <small class=" text-muted fs-5">20222</small> News Daily</p>
     </footer>
-
 
     <script src="https://kit.fontawesome.com/dcf77283d2.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
